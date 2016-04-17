@@ -10,5 +10,10 @@ using namespace std;
 int main(){
 	int i=9;
 	cout<<i<<endl;
+	for(int j=0;j<i;j++){
+		int sum=0;
+		sum+=j;
+	}
+	cout<<sum<<endl;
 	return 0;
 }
