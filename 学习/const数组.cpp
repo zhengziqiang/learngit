@@ -10,6 +10,7 @@ using namespace std;
 int main(){
 	int a[2];
 	cin>>a[0]>>a[1];
+	a[0]=5;
 	int *const p=a;
 	*p=8;
 	cout<<*p<<" "<<*(p+1)<<endl;
