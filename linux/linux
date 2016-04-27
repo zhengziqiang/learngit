@@ -1,0 +1,7 @@
+find的语法:
+find ./目录 -name *.html(hanshu.*)
+完全匹配
+grep的用法：
+grep "搜寻的文字" 文件名
+grep "size" hehe.html
+grep -v "size" hehe.html 取非
