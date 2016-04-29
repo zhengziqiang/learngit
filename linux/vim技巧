@@ -1,0 +1,5 @@
+在vim下复制粘贴文件可以用:read 命令
+如：
+:read hehe
+如果是记录文件就是
+:read !ll
