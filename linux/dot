@@ -8,3 +8,6 @@ graph demo{
 然后在终端键入：
 dot demo.dot -Tpng -o 1.png
 然后就生成1.png的图像文件。-o的意思是二进制编译。如果不加它,就会生成二进制文件。
+在终端打开一个图像的方法就是：
+eog 1.png
+eye of gmone
