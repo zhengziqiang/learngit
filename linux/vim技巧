@@ -3,3 +3,7 @@
 :read hehe
 如果是记录文件就是
 :read !ll
+注意组合键的使用
+VG
+:normal d1w
+:normal ihello
