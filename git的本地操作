@@ -1,0 +1,10 @@
+我们在本地操作git使git的工作区发生改变时，如创立文件夹，删除文件夹，移动文件。我们如果想要远程的github发生改变，我们所要做的操作就是如下：
+首先git add -A
+让我们的修改进入版本库。
+然后git ci -m ""
+最后我们git push origin masterO(默认在master分支)
+然后我们的github也会得到更新，如果我们想要我们的dev分支也得到相应的改变，我们就要切换到dev分支。
+git co dev
+然后merge 
+egit merge master.
+我们的dev分支也会得到相应的改变.
