@@ -7,3 +7,31 @@
 VG
 :normal d1w
 :normal ihello
+命令行的意思就是在终端下方输入的一串命令。如:%normal A008
+如果要重复这个命令，我们要做的就是@:
+
+vim 也可以自动补全
+命令是ctrl+d
+在命令行模式下也能查看历史信息
+先打开命令行模式:然后按上下键
+set history=200设置记录的历史命令条数最大为200
+
+colorscheme murphy
+在vimrc中添加背景颜色
+
+
+q:进入命令行窗口
+
+两个命令同时使用的用法是
+: write | quit
+
+
+u和ctrl+r是相反的作用，一个是反转u的命令
+
+q/ 打开查找历史命令的命令行窗口
+q: 打开ex历史命令的命令行窗口
+ctrl+f 从命令行切换到命令窗口
+
+
+:!command
+在shell命令下执行command
