@@ -35,3 +35,4 @@ ctrl+f 从命令行切换到命令窗口
 
 :!command
 在shell命令下执行command
+
