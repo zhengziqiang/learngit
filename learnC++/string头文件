@@ -1,0 +1,39 @@
+ #include<string>与#include<string.h>的区别
+为什么下面这段代码
+#include <string.h>
+
+void main()
+{
+     string aaa= "abcsd d";
+     printf("looking for abc from abcdecd %s\n",
+         (strcmp(aaa,"abc")) ? "Found" : "Not Found");
+
+}
+不能正确执行，说是string类型没有定义
+而下面：
+#include <string>
+
+using namespace std;
+void main()
+{
+     string aaa= "abcsd d";
+     printf("looking for abc from abcdecd %s\n",
+         (strcmp(aaa,"abc")) ? "Found" : "Not Found");
+}
+这里的string编译器就认识了，但是strcmp就不认识了呢？
+---------------------------------------------------------------
+
+一般一个C++的老的带“.h”扩展名的库文件，比如iostream.h，在新标准后的标准库中都有一个不带“.h”扩展名的相对应，区别除了后者的好多改进之外，还有一点就是后者的东东都塞进了“std”名字空间中。
+
+但唯独string特别。
+问题在于C++要兼容C的标准库，而C的标准库里碰巧也已经有一个名字叫做“string.h”的头文件，包含一些常用的C字符串处理函数，比如楼主提到的strcmp。
+这个头文件跟C++的string类半点关系也没有，所以<string>并非<string.h>的“升级版本”，他们是毫无关系的两个头文件。
+要达到楼主的目的，比如同时：
+#include <string.h>
+#include <string>
+using namespace std;
+或者
+#include <cstring>
+#include <string>
+
+其中<cstring>是与C标准库的<string.h>相对应，但裹有std名字空间的版本。
