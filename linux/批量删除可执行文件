@@ -1,0 +1,2 @@
+我们在linux中批量删除可执行文件的快捷方式是
+find . -executable -exec rm -v {} \;
