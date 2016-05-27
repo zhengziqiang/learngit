@@ -1,0 +1,22 @@
+
+用笔记本时碰到很多次在打字的时候碰到触摸板导致误操作。在ubuntu总结了以下三种方法来解决。
+
+快捷键方法
+
+有的笔记本支持Fn+F4类似可以使两者直接进行切换。
+
+命令方法
+
+在终端下直接执行以下命令来打开或关闭触摸板。
+ 
+sudo modprobe -r psmouse #关闭
+sudo modprobe psmouse #打开
+ 
+软件方法
+
+安装touchpad-indicator之前两个方法都是手动，而这个则可以检测是否有插上鼠标来确定是否去关闭触摸板。
+ 
+sudo add-apt-repository ppa:atareao/atareao
+sudo apt-get update
+sudo apt-get install touchpad-indicator
+ 
