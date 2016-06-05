@@ -1,0 +1,193 @@
+
+环境：
+    ubuntu 14.04 64位
+    无GPU
+准备工作：
+*首先验证你是否有nvidia的显卡（http://developer.nvidia.com/cuda-gpus这个网站查看你是否有支持gpu的显卡）：
+$ lspci | grep -i nvidia  
+
+*查看linux发行版本
+uname -m && cat /etc/*release
+看第一行
+
+*看gcc版本
+$ gcc --version
+
+Step1、安装cuda(无GPU安装可以直接跳过这一步,所以这里直接跳过。要说明的是cuda 32位尚未找到合适的安装包，所以这里的linux要64位的)
+*在cuda官网(https://developer.nvidia.com/cuda-downloads#linux)下载对应版本.
+
+*下载完成之后可以使用如下命令安装它，注意文件名修改为cuda-repo-ubuntu1404_6.5-14_amd64.deb
+$ sudo dpkg -i cuda-repo-<distro>_<version>_<architecture>.deb
+(或者在图形界面下直接双击下载的deb文件)
+
+Network Install和Local Install的区别：一个是文件小，在线更新；一个是文件大，可以离线安装。
+（Q: What is the difference between the Network Installer and the Local Installer?
+A: The Local Installer has all of the components embedded into it (toolkit, driver, samples). This makes the installer very large, but once downloaded, it can be installed without an internet connection. The Network Installer is a small executable that will only download the necessary components dynamically during the installation so an internet connection is required.）
+
+安装好仓库文件后，更新本地仓库：
+$ sudo apt-get update
+最后开始安装cuda以及显卡驱动（安装cuda的同时就会把显卡驱动也全部安装好，这个真的很方便。但是下载的时间有点长。）
+$ sudo apt-get install cuda  
+
+安装完之后你需要设置环境变量：
+    $ export PATH=/usr/local/cuda-6.5/bin:$PATH  
+    $ export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib64:$LD_LIBRARY_PATH  
+
+设置完毕之后，你还可以选择是否安装cuda附带的示例代码（<dir>表示你要安装的位置，你可以将<dir>替换成~）：
+    $ cuda-install-samples-6.5.sh <dir>  
+
+接下来做一些验证工作(我的电脑没有GPU，所以验证跳过)：
+查看显卡的驱动版本
+    cat /proc/driver/nvidia/version  
+查看nvcc编译器的版本
+    nvcc -V i  
+编译cuda的示例代码:
+    cd ~/NVIDIA_CUDA-6.5_Samples  
+
+然后make一下编译代码。
+进入bin路径运行devicequery
+    cd ~/NVIDIA_CUDA-6.5_Samples/bin  
+    ./ deviceQuery  
+
+
+Step2、预装依赖准备
+Caffe has several dependencies.
+
+    CUDA is required for GPU mode.
+        library version 7.0 and the latest driver version are recommended, but 6.* is fine too
+        5.5, and 5.0 are compatible but considered legacy
+    BLAS via ATLAS, MKL, or OpenBLAS.
+    Boost >= 1.55
+    OpenCV >= 2.4 including 3.0
+    protobuf, glog, gflags
+    IO libraries hdf5, leveldb, snappy, lmdb
+
+Pycaffe and Matcaffe interfaces have their own natural needs.
+
+    For Python Caffe: Python 2.7 or Python 3.3+, numpy (>= 1.7), boost-provided boost.python
+    For MATLAB Caffe: MATLAB with the mex compiler.
+
+cuDNN Caffe: for fastest operation Caffe is accelerated by drop-in integration of NVIDIA cuDNN. To speed up your Caffe models, install cuDNN then uncomment the USE_CUDNN := 1 flag in Makefile.config when installing Caffe. Acceleration is automatic. For now cuDNN v1 is integrated but see PR #1731 for v2.
+
+CPU-only Caffe: for cold-brewed CPU-only Caffe uncomment the CPU_ONLY := 1 flag in Makefile.config to configure and build Caffe without CUDA. This is helpful for cloud or cluster deployment.
+（最后一步在编译caffe前会说明）
+
+具体操作：
+下面3个应该在build-essential里了，不过这里保险起见，我先装上了。
+    sudo apt-get install g++
+    sudo apt-get install git
+    sudo apt-get install freeglut3-dev
+build-essential:
+    sudo apt-get install build-essential
+    sudo apt-get update
+安装ATLAS for Ubuntu：
+     # sudo apt-get install libatlas-base-dev
+     # sudo apt-get install libprotobuf-dev
+     # sudo apt-get install libleveldb-dev
+     # sudo apt-get install libsnappy-dev
+     # sudo apt-get install libopencv-dev
+     # sudo apt-get install libboost-all-dev
+     # sudo apt-get install libhdf5-serial-dev
+     # sudo apt-get install libgflags-dev
+     # sudo apt-get install libgoogle-glog-dev
+     # sudo apt-get install liblmdb-dev
+     # sudo apt-get install protobuf-compiler
+
+安装Opencv：
+     # cd ~/caffe
+     # git clone https://github.com/jayrambhia/Install-OpenCV
+     # cd Install-OpenCV/Ubuntu
+     # sudo ./dependencies.sh
+     # cd 2.4
+     # sudo sh ./opencv2_4_9.sh
+*这里有几点要注意的，也是花了很长时间解决的一个坑：
+    首先2.4.8的源找不到了，所以不要用2.4.8
+    其次2.4.10编译有问题，不过可以尝试解决下，这里没用
+这里最好不要自己直接装，因为有很多的依赖，去
+git clone https://github.com/jayrambhia/Install-OpenCV
+或者https://github.com/jayrambhia/Install-OpenCV都可以下载脚本。
+这里最新的就是2.4.9，如果要装2.4.10的话把脚本拷贝一份做对应修改就行了。
+    *由于wget opencv2.4.9.zip源文件非常慢，这里的办法是去sourceforge对应下载页面，选择其他服务器下载镜像，可以下载到本地，注意同时修改相应脚本，把wget注释掉。
+    make opencv的时候会报错，这里将脚本的cmake替换为如下：
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D WITH_CUBLAS=OFF -D WITH_CUDA=OFF -D WITH_CUFFT=OFF ..
+即加上最后3个，编译ok，然后继续。
+
+Step3:编译Caffe
+下载caffe安装包,下载地址:https://github.com/BVLC/caffe
+    解压该压缩包，解压缩命令:
+    unzip /home/liuxiabing/下载/caffe-master.zip  
+    注:如果解压位置出错了,可以使用以下命令删除该目录及所有的子目录:
+    sudo rm -rf caffe-master  
+
+    进入caffe根目录， 首先复制一份Makefile.config，命令：
+    cp Makefile.config.example Makefile.config  
+
+    然后修改里面的内容，主要需要修改的参数包括：
+    CPU_ONLY 是否只使用CPU模式，由于我没有NVIDIA的显卡，就没有安装CUDA，因此需要打开这个选项。
+    其余的一些配置可以根据需要修改：
+    BLAS (使用intel mkl还是OpenBLAS)
+    MATLAB_DIR 如果需要使用MATLAB wrapper的同学需要指定matlab的安装路径, 如我的路径为 /usr/local/MATLAB/R2013b (注意该目录下需要包含bin文件夹，bin文件夹里应该包含mex二进制程序)
+    DEBUG 是否使用debug模式，打开此选项则可以在eclipse或者NSight中debug程序
+
+    完成上述设置后，开始编译：  
+    make all -j4  
+    make test  
+    make runtest  
+
+   注意：-j4 是指使用几个线程来同时编译，可以加快速度，j后面的数字可以根据CPU core的个数来决定，如果CPU是4核的，则参数为-j4，也可以不添加这个参数，直接使用“make all”，这样速度可能会慢一点儿。
+
+Step4:利用mnist数据集进行测试
+*运行下载数据的脚本的时候发现mnist数据网站打不开，幸好之前在ufldl实验中保存了一份mnist的数据集，放到data/mnist目录下重命名了一下最后直接运行ok。
+使用MNIST数据集进行测试
+    Caffe默认情况会安装在$CAFFE_ROOT，就是解压到的那个目录，例如：$ home/username/caffe-master，所以下面的工作，
+默认已经切换到了该工作目录。下面的工作主要是测试Caffe是否工作正常，不做详细评估。具体设置请参考官网：
+http://caffe.berkeleyvision.org/gathered/examples/mnist.html
+    (1)数据预处理
+    可以用下载好的数据集，也可以重新下载，直接下载的具体操作如下：
+    $ cd data/mnist  
+    $ sudo sh ./get_mnist.sh  
+
+    (2)重建LDB文件，就是处理二进制数据集为Caffe识别的数据集，以后所有的数据，包括jpe文件都要处理成这个格式，执行命令如下：
+    $ sudo sh ./examples/mnist/create_mnist.sh  
+
+    生成mnist-train-leveldb/ 和 mnist-test-leveldb/文件夹，这里包含了LDB格式的数据集
+    注:新版caffe都需要从根目录上执行，如果使用下列命令执行：
+    # cd examples/mnist  
+    # sudo sh ./create_mnist.sh  
+
+    可能会遇到这个错误：./create_mnist.sh: 16: ./create_mnist.sh: build/examples/mnist/convert_mnist_data.bin: not found
+    (3)训练mnist
+    如果没有GPU,只有CPU的话,需要先修改examples/mnist目录下lenet_solver.prototxt文件,将solver_mode:GPU改为      solver_mode:CPU，修改后结果如下所示：
+    # solver mode: CPU or GPU  
+    solver_mode: CPU  
+
+    修改时可以使用vi编辑命令，如果是只读文件，不能编辑，可以用sudo命令，比如:
+    sudo vi lenet_solver.prototxt  
+
+     先进入命令模式，使用a进入编辑模式，修改完之后，使用esc退出编辑模式，进入末行模式，再使用“:wq”保存修改并退出(“:q!”为退出但不保存修改)
+   修改完成后，再执行下面的命令进行训练:
+    $ cd examples/mnist  
+    $ sudo sh ./train_lenet.sh  
+
+最终训练完的模型存储为一个二进制的protobuf文件，CPU模式下训练这样的数据集大概需要20分钟，比较慢。至此，Caffe安装的所有步骤完结。
+
+参考：
+官方安装文档：
+    http://caffe.berkeleyvision.org/installation.html
+caffe+Ubuntu14.0.4 64bit 环境配置说明(无CUDA,caffe在CPU下运行) ：
+    http://blog.csdn.net/liuxiabing150/article/details/42503389
+（*注意无GPU模式下的配置）
+全新 ubuntu 14.04 系统安装 caffe：
+    http://www.rthpc.com/plus/view.php?aid=356
+全新 ubuntu 14.04 系统安装 caffe（使用mkl）
+    http://www.rthpc.com/plus/view.php?aid=375
+安装cuda的说明：
+    http://blog.csdn.net/xizero00/article/details/43227019
+自动安装opencv的脚本：
+    https://github.com/jayrambhia/Install-OpenCV
+caffe安装说明参考：
+    http://www.cnblogs.com/platero/p/3993877.html
+Caffe 安装配置(CentOS + 无GPU):
+    http://www.tuicool.com/articles/uiuA3e
+Caffe + Ubuntu 14.04 64bit + CUDA 6.5 配置说明：
+    http://www.cnblogs.com/platero/p/3993877.html
