@@ -1,0 +1,5 @@
+1.sudo apt-get update
+2.sudo apt-get install linux-image-generic-lts-trusty
+3.sudo reboot
+4.wget -qO- https://get.docker.com/ | sh
+5.sudo start docker

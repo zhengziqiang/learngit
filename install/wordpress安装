@@ -1,0 +1,18 @@
+1.mysql -u root -p //以root用户登陆
+2.
+CREATE DATABASE wordpress;//新增数据库(wordpress)
+CREATE USER wordpressuser@localhost IDENTIFIED BY 'password';//新增数据库使用者wordpressuser 密码是password
+
+GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost;
+FLUSH PRIVILEGES;//赋予他全部权限并确认
+exit
+
+下载wordpress
+
+wget http://wordpress.org/latest.tar.gz
+
+sudo apt-get update
+sudo apt-get install php5-gd libssh2-php
+cp wp-config-sample.php wp-config.php
+nano wp-config.php //修改数据库和数据库使用者，密码等，填上刚才我们使用的wordpress,wordpressuser,password
+后续就是域名和主机的配置

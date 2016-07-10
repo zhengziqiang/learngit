@@ -1,0 +1,2 @@
+1.sudo apt-get install tasksel
+2.sudo tasksel install lamp-server  //其中会让你配置mysql的root用户密码

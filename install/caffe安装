@@ -1,0 +1,14 @@
+1.sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+2.sudo apt-get install --no-install-recommends libboost-all-dev //安装所需要的依赖库
+3.sudo apt-get install libatlas-base-dev  //安装BLAS
+3、安装python（我的Ubuntu14.04自带）
+4、安装matlab（详见： Ubuntu14.04安装Matlab2014a）
+5、安装opencv（详见：Ubuntu14.04安装OpenCV3.0）
+注：opencv必须安装，且版本为>=2.4或3.0A
+6安装依赖的库
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+git clone git://github.com/BVLC/caffe.git
+cp Makefile.config.example Makefile.config# 修改Makefile.config文件：去掉CPU_ONLY:= 1的注释$ make all$ make test$ make runtest
+更改路径   Previously it couldn't find hdf5 library, which I solved by making the following change in the makefile.config file:
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial 
+然后make all,make test,make runtest

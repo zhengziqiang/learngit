@@ -1,0 +1,15 @@
+1.$ sudo apt-get install autoconf automake libtool curl
+$ git clone https://github.com/google/protobuf 
+$ cd protobuf 
+修改autogen.sh
+我的解决方案是自己下载gmock.2.7.1.zip,然后解压，再改名，然后把autogen.sh中关于这个的部分删去
+./autogen.sh
+./configure
+make
+make check	
+make install 不能就sudo 
+sudo ldconfig
+./configure --prefix=/usr
+安装python依赖
+cd python
+sudo python setup.py install 
