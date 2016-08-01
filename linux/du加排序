@@ -1,0 +1,2 @@
+du . | sort -nr | more
+以du排序并将它显示出来
