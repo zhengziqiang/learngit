@@ -1,1 +1,2 @@
-this is something about how to write codes better
+###this is my first
+##what you have done is what you get
