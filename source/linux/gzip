@@ -1,0 +1,8 @@
+gzip *
+压缩该目录文件下的所有文件
+gzip -dv *
+压缩并显示压缩比
+gzip -rv dir 
+递归压缩整个目录文件
+gzip -dr dir 
+递归的解压文件

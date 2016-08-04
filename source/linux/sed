@@ -1,0 +1,4 @@
+sed -i '1,$s/a/b/' file 
+将a换成b
+sed -i '1,$/std/d' file
+将包含std的行去除

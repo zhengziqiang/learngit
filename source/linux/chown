@@ -1,0 +1,9 @@
+chown root: file 
+改变文件的拥有者和属组
+chown :root file
+改变文件的属组
+实例4：改变指定目录以及其子目录下的所有文件的拥有者和群组 
+
+　　命令：
+
+　　　　chown -R -v root:mail test6

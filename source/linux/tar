@@ -1,0 +1,9 @@
+tar -ztvf file.tar 
+查看 tar 包内的文件名称，如果单只要一个文件，就可以透过这个方式来解压部分文件！
+tar -zxvf /opt/soft/test/log30.tar.gz log2013.log
+只解压部分文件
+实例6：在 文件夹当中，比某个日期新的文件才备份
+
+命令：
+
+tar -N "2012/11/13" -zcvf log17.tar.gz test

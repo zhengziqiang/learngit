@@ -1,0 +1,3 @@
+chmod -R u+x dir/
+chmod u+x,g+r file
+chmod =r file

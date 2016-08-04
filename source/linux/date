@@ -1,0 +1,29 @@
+date 命令的另一个扩展是 -d 选项，该选项非常有用。使用这个功能强大的选项，通过将日期作为引号括起来的参数提供，您可以快速地查明一个特定的日期。-d 选项还可以告诉您，相对于当前日期若干天的究竟是哪一天，从现在开始的若干天或若干星期以后，或者以前（过去）。通过将这个相对偏移使用引号括起来，作为 -d 选项的参数，就可以完成这项任务。
+
+具体说明如下：
+
+date -d "nov 22"  今年的 11 月 22 日是星期三
+
+date -d '2 weeks' 2周后的日期
+
+date -d 'next monday' (下周一的日期)
+
+date -d next-day +%Y%m%d（明天的日期）或者：date -d tomorrow +%Y%m%d
+
+date -d last-day +%Y%m%d(昨天的日期) 或者：date -d yesterday +%Y%m%d
+
+date -d last-month +%Y%m(上个月是几月)
+
+date -d next-month +%Y%m(下个月是几月)
+
+使用 ago 指令，您可以得到过去的日期：
+
+date -d '30 days ago' （30天前的日期）
+
+使用负数以得到相反的日期：
+
+date -d 'dec 14 -2 weeks' （相对:dec 14这个日期的两周前的日期）
+
+date -d '-100 days' (100天以前的日期)
+
+date -d '50 days'(50天后的日期)
