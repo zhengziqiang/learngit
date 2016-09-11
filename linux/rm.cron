@@ -1,0 +1,6 @@
+33 8 * * * sh /home/zzq/code/code/rm.sh
+//this is comment
+33 8 * * * root run-parts /home/zzq/code/code/rm.sh
+cron -r 删除crontab的任务
+cron -l 列出crontab的任务
+
