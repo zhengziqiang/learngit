@@ -1,0 +1,8 @@
+sudo apt-get update
+sudo apt-get install linux-headers-generic build-essential
+wget https://www.kernel.org/pub/linux/kernel/projects/backports/2015/11/20/backports-20151120.tar.gz
+tar -zxvf backports-20151120.tar.gz
+cd backports-20151120
+make defconfig-iwlwifi
+make
+sudo make install
