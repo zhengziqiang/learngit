@@ -1,0 +1,11 @@
+回帖奖励
+前一段时间升级失败，最后通过tty处理了问题。当时遇到tty无法显示中文的问题。当时是设置为英文解决了问题。
+现在有点时间，查找些资料。解决了tty中文的问题。请按步骤：
+1.安装fbterm，网上也有介绍zhcon，但这个太久没有更新了。
+sudo  apt-get install fbterm
+2.进入tty，配置文件sudo  vi .fbtermrc
+更改显示文字大小
+font-size=16
+更改汉字编码
+text-encodings=utf8
+3.保存退出，再sudo  fbterm就可以正常使用了。如果安装了w3m，还可以在终端上浏览网页呢。
