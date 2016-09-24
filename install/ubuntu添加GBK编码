@@ -1,0 +1,30 @@
+linux 下默认是不支持gbk 编码格式的
+
+
+简单几步设置即可
+
+
+1.修改/var/lib/locales/supported.d/local文件,在文件中添加
+
+zh_CN.GBK GBK
+
+zh_CN.GB2312 GB2312
+
+zh_CN.GB18030 GB18030
+
+2.sudo dpkg-reconfigure -force locales
+
+……….
+
+zh_CN.GB18030… done
+
+zh_CN.GB2312… done
+
+zh_CN.GBK… done
+
+出现以上3行之后，ubuntu就支持GBK编码了，然后就可以在eclipse中设置编码了
+
+搞定
+
+
+在ubuntu 下 eclipse默认的编码格式为 utf-8 
