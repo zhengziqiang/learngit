@@ -8,6 +8,7 @@
 #include<iostream>
 using namespace std;
 int fun(int a,int b){
+	//返回值只能有一个,但是可以返回不同的值
 	if(a==1){
 		return (b+1);
 	}

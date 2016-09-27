@@ -1,0 +1,2 @@
+sed -i "s/weight_co:/\t/g" filename
+sed -i "/block_no/d" filename
