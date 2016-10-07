@@ -1,0 +1,33 @@
+\documentclass{report}
+\usepackage{zhfontcfg}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pstricks}
+\usepackage{tikz}
+\begin{document}
+\begin{center}
+\begin{tikzpicture}
+\draw[->](0,0) -- (3,0);
+\draw[->](0,0) -- (0,3);
+\draw (0,0) -- +(1.414,1.414);
+\draw[->] (2,0) arc(0:45:2) ;
+\node[below=4pt,left] at (0,0) {$O$};
+\node[right] at(3,0) {$x$};
+\node[above] at(0,3) {$y$};
+\node[below] at(2,0) {$R$};
+\end{tikzpicture}
+\\
+图$5.17$
+\end{center}
+$$\left|\int_{C_{R}}e^{iz^{2}}dz\right|=\left|\frac{iR}{2}\int_{0}^{\pi/2}e^{iR^{2}}\left(\cos \theta+i\sin \theta\right)e^{i\frac{\theta}{2}}d\theta\right|\leqslant\frac{R}{2}\int_{0}^{\pi/2}e^{-R^{2}\sin \theta}d\theta$$
+利用若尔当不等式$\left(5.14\right)$,当$R\rightarrow+\infty$时，有\\
+$$\left|\int_{C_{R}}e^{iz^{2}}dz\right|\leqslant\frac{R}{2}\int_{0}^{\pi/2}e^{-\frac{2R^{2}\theta}{\pi}}d\theta=\frac{\pi}{4R}\left(1-e^{-R^{2}}\right)\rightarrow0$$
+利用积分$\int_{0}^{+\infty}e^{-t^{2}}dt=\frac{\sqrt{\pi}}{2}$，在$\left(5.22\right)$式中，令$R\rightarrow+\infty$，取极限得
+$$\int_{0}^{+\infty}e^{ix^{2}}dx=e^{i\frac{\pi}{4}}\int_{0}^{-r^{2}}dr=e^{i\frac{\pi}{4}}\frac{\sqrt{\pi}}{2}$$
+于是
+$$\int_{0}^{+\infty}\cos x^{2}dx+i\int_{0}^{+\infty}\sin x^{2}dx=\left(\frac{1}{\sqrt{2}}+i\frac{1}{\sqrt{2}}\right)\frac{\sqrt{\pi}}{2}$$
+比较两边的实部与虚部即得
+$$\int_{0}^{+\infty}\sin x^{2}dx=\frac{1}{2}\sqrt{\frac{\pi}{2}}$$
+$$\int_{0}^{+\infty}\cos x^{2}dx=\frac{1}{2}\sqrt{\frac{\pi}{2}}$$
+\qquad 利用菲涅尔积分，可得\textbf{考纽螺线}的坐标公式，此曲线的特点在于其弧长$s$与曲率$k$成正比，即$s=a^{2}k$,其中$a$是常数。因$k=\frac{d\theta}{ds}$,$\cos \theta=\frac{dx}{ds}$,$\sin \theta=\frac{dy}{ds}$,故
+\end{document}
