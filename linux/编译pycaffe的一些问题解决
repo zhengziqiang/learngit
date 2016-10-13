@@ -1,0 +1,15 @@
+  然后:在protobuf的pthon目录下对python进行支持:
+[plain] view plain copy
+print?在CODE上查看代码片派生到我的代码片
+
+    </pre><pre code_snippet_id="1608143" snippet_file_name="blog_20160313_2_8573157" class="plain" name="code"><pre code_snippet_id="1608143" snippet_file_name="blog_20160313_2_8573157" class="plain" name="code">python setup.py install（有可能说少一个什么compiler文件，自己去对应的目录下面创建一个就可以啦）  
+
+python setup.py test
+
+  最后:把caffe的python目录添加到pythonpath中
+[plain] view plain copy
+print?在CODE上查看代码片派生到我的代码片
+
+    export PYTHONPATH=/opt/modules/caffe/python:$PYTHONPATH  
+
+  之后再python下import  caffe就会正常于运行了。一般情况在编译完源码正常测试结束，并且make pycaffe 没有错误，但是import caffe还是有错，就是去找protobuf的错误，看看protobuf时候支持python，并且添加相应的目录)
