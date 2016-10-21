@@ -12,6 +12,7 @@ import com.example.picupload.MultipartEntity;
  
   
 import java.io.IOException;  
+import java.net.URL;
 //import java.util.HashMap;
 //import java.util.Map;
 
@@ -45,6 +46,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import java.io.*;
 public class MainActivity extends Activity implements OnClickListener {
 	private static ImageView mimageViewPhotoShow;
 	private PopupWindow mPopupWindow;
@@ -58,7 +60,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private static final String TAG = "upload";
 	private String filepath;
 	private static String filename;
-	public static String responseImageUrl = "";//回复图片的地址
+	public static String responseImageUrl = "http://localhost:8080/resultimage/result.jpg";//回复图片的地址
 	
 	
 //	private static Handler myHandler = new Handler() {  
@@ -72,9 +74,8 @@ public class MainActivity extends Activity implements OnClickListener {
 //        }   
 //   };
 
-   private void sendPhoto(Bitmap bitmap,String urll) throws Exception {
+   private void sendPhoto(Bitmap bitmap) throws Exception {
 		new UploadTask().execute(bitmap);
-		urll=UploadTask.url;
 	}
    //added by zzq
    private void setPic() {
@@ -111,7 +112,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	    mimageViewPhotoShow.setImageBitmap(rotatedBMP);
 	    
 	    try {
-			sendPhoto(rotatedBMP,responseImageUrl);
+			sendPhoto(rotatedBMP);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -229,19 +230,36 @@ public class MainActivity extends Activity implements OnClickListener {
 			
 		}
 		if (arg0.getId()==R.id.buttonPost)
-//		{
-//			UploadUtil up=new UploadUtil();
-//			
-//			Map<String, String> paramMap = new HashMap<String, String>();
-//			paramMap.put("keyName", "value");
-//			
-//			up.uploadFile(saveDir, "imageKey", URL, paramMap, myHandler);
-//		}	
 		{
+			mPopupWindow = new PopupWindow(mpopview, 300, 400, true);
+			mPopupWindow.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.tekephoto_dialog_background));
+
+			mPopupWindow.showAtLocation(mimageViewPhotoShow, Gravity.CENTER, 0,
+					0);
+			Button mbuttonTakePhoto = (Button) mpopview
+					.findViewById(R.id.button_take_photo);
+			Button mbuttonChoicePhoto = (Button) mpopview
+					.findViewById(R.id.button_choice_photo);
+			Button mbuttonChoicecannce = (Button) mpopview
+					.findViewById(R.id.button_choice_cancer);
+			
 			setPic();
+			
+			
 		}
 		if(arg0.getId()==R.id.buttonresult){
-			mimageViewPhotoShow.setImageURI(Uri.parse(responseImageUrl)); 
+			mimageViewPhotoShow.setImageURI(Uri.parse(responseImageUrl));
+//			try{
+//				URL url = new URL(responseImageUrl);  
+//				InputStream is = url.openStream();
+//				Bitmap bitmap = BitmapFactory.decodeStream(is);  
+//				mimageViewPhotoShow.setImageBitmap(bitmap);  
+//				is.close();  
+//			}
+//			catch(IOException e){
+//				e.printStackTrace();
+//			}
 		}
 	}
 
@@ -265,7 +283,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						"http://192.168.31.101:8080/hackathon/api/upload"); // server
 
 				MultipartEntity reqEntity = new MultipartEntity();//实例化
-				reqEntity.addPart("myFile",
+				reqEntity.addPart("detectfaces",
 						filename, in);
 				httppost.setEntity(reqEntity);
 

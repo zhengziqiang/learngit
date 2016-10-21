@@ -10,7 +10,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:text="请选择获取头像方式："
+        android:text="请选择获取图片方式："
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="16sp" />
 
