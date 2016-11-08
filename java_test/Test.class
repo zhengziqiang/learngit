@@ -1,0 +1,27 @@
+/*==============================================================================
+    > File Name: Test.java
+    > Author: zzq
+    > Mail: zhengziqiang1@gmail.com 
+    > Created Time: 2016年10月09日 星期日 15时35分11秒
+ ==========================================================================*/
+import java.io.*;
+
+public class Test{
+   public static void main(String args[])throws IOException{
+
+      DataInputStream d = new DataInputStream(new
+                               FileInputStream("test.txt"));
+
+      DataOutputStream out = new DataOutputStream(new
+                               FileOutputStream("test1.txt"));
+
+      String count;
+      while((count = d.readLine()) != null){
+          String u = count.toUpperCase();
+          System.out.println(u);
+          out.writeBytes(u + "  ,");
+      }
+      d.close();
+      out.close();
+   }
+}
