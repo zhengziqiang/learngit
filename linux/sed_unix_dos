@@ -1,0 +1,7 @@
+使用sed
+
+         在DOS文件格式中使用CR/LF换行，在Unix下仅使用LF换行，sed替换命令如下：
+
+         DOS转UNIX：$ sed ‘s/.$//’dosfile.txt > unixfile.txt
+
+         UNIX转DOS：$ sed ’s/$/\r/’unixfile.txt > dosfile.txt
