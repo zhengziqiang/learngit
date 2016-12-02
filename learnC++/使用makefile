@@ -1,2 +1,0 @@
-当使用makefile时，若只想要make一个文件时,则使用方法如下：
-make filename
