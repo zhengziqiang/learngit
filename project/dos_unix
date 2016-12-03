@@ -1,0 +1,22 @@
+最近使用Ubuntu Linux发现，Windows 下的文本到Linux下可以正常的浏览，但是Linux下的文本到Windows下后发现凡是“回车”部分全是“黑块”，经过一段时间的查询搜索发现了原因及解决办法：
+DOS/Windows和Linux/Unix的文件换行回车格式不同，基于 DOS/Windows 的文本文件在每一行末尾有一个 CR（回车）和 LF（换行），而 UNIX 文本只有一个换行。
+
+1）、把Dos/Windows下的文件移至Linux/Unix系统
+
+虽然很多程序不在乎 DOS/Windows 格式的 CR/LF 文本文件，但是有几个程序却在乎 -- 最著名的是 bash，只要一遇到回车，它就会出问题。以下 sed 调用将把 DOS/Windows 格式的文本转换成可信赖的 UNIX 格式：
+
+$ sed -e 's/.$//' mydos.txt > myunix.txt
+
+该脚本的工作原理很简单：替代规则表达式与一行的最末字符匹配，而该字符恰好就是回车。我们用空字符替换它，从而将其从输出中彻底删除。如果使用该脚本并注意到已经删除了输出中每行的最末字符，那么，您就指定了已经是 UNIX 格式的文本文件。也就没必要那样做了！
+
+2）、把Linux/UNIX 文本移至 Windows 系统，使用以下脚本执行必需的格式转换:
+
+$ sed -e 's/$/\r/' myunix.txt > mydos.txt
+
+在该脚本中，'$' 规则表达式将与行的末尾匹配，而 '\r' 告诉 sed 在其之前插入一个回车。在换行之前插入回车，立即，每一行就以 CR/LF 结束。请注意，仅当使用 GNU sed 3.02.80 或以后的版本时，才会用 CR 替换 '\r'。 
+
+另外还有个方法：
+使用命令 
+unix2dos filename 
+dos2unix filename 
+互相转换，具体抄哪个方向转不用我详细说了吧。
