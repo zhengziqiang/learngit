@@ -1,0 +1,40 @@
+\qquad \textbf{例19}\qquad 设n次多项式\\
+$$P(z)=a_{0}z^{n}+a_{1}z^{n-1}+ ...  + a_{n}\quad(a_{0}\neq 0)$$
+在虚轴上没有零点，试证明它的零点全在左半平面$Re_{z}<0$内的充要条件为
+$$\bigtriangleup Arg_{y(-\infty\nearrow+\infty)}P(iy)=n\pi.$$
+即当点z自下而上沿虚线从点$\infty$走向点$\infty$的过程中，$P(z)$绕原点转了半圈。\\
+\qquad \textbf{证}\qquad 令围线$C_{R}$是右半圆周
+$$\Gamma_{R}:z=Re^{i\theta} \big(-\frac{\pi}{2}\leq\theta\leq\frac{\pi}{2}$$
+在虚轴上从$Ri$到$-Ri$的有向线段所构成（图$5.12$）。
+\begin{center}
+\begin{tikzpicture}
+\draw[->](0,0) -- (3,0);
+\draw[->](0,0) -- (0,3);
+\draw (0,0) -- +(0,2);
+\draw[->] (2,0) arc(0:45:2) ;
+\node[below=4pt,left] at (0,0) {$O$};
+\node[right] at(3,0) {$x$};
+\node[above] at(0,3) {$y$};
+\node[below] at(2,0) {$R$};
+\end{tikzpicture}
+\\
+图$5.17$
+\end{center}
+\qquad 于是$P(z)$的零点全在左半平面的充要条件为$N(P,C_{R})=0$对任意$R$均成立，由$(5.29)$式即可知此条件可写成
+\begin{equation}
+\begin{aligned}
+0&=\lim_{R\rightarrow+\infty}\bigtriangleup_{C_{R}}ArgP(z) \
+&=\lim_{R\rightarrow+\infty}\bigtriangleup_{C_{R}}ArgP(z)-\lim_{R\rightarrow+\infty}\bigtriangleup_{y(-R\nearrow+R)}ArgP(iy)
+\end{aligned}
+\end{equation}
+$$0=\lim_{R\rightarrow+\infty}\bigtriangleup_{C_{R}}ArgP(z)\newline
+=\lim_{R\rightarrow+\infty}\bigtriangleup_{C_{R}}ArgP(z)-\lim_{R\rightarrow+\infty}\bigtriangleup_{y(-R\nearrow+R)}ArgP(iy)$$
+但我们有
+$$\bigtriangleup_{\Gamma_{R}}ArgP(z)=\bigtriangleup_{\Gamma_{R}}Arg{a_{0}z^{n}[1+g(z)]}=\bigtriangleup_{\Gamma_{R}}Arg(a_{0}z^{n}+\bigtriangleup_{\Gamma_{R}}Arg[1+g(z)],$$
+其中$g(z)=\frac{a_{1}z^{n-1}+ ... +a_{n}}{a_{0}z^{n}}$,在$R\rightarrow+\infty$时，$g(z)$沿$\Gamma_{R}$一致趋于零,\\
+\qquad 由此知
+$$\lim_{R\rightarrow+\infty}\bigtriangleup_{\Gamma_{R}}Arg[1+g(z)]=0.$$
+另一方面又有
+$$\bigtriangleup_{\Gamma_{R}}Arga_{0}z^{n}=\bigtriangleup_{\theta[-\frac{\pi}{2}\nearrow+\frac{\pi}{2}]}Arga_{0}R^{n}e^{in\theta}=n\pi.$$
+这样一来，$(5.30)$式就是我们所要证明的
+\end{document}
