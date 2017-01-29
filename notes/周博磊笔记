@@ -1,0 +1,7 @@
+Bag-of-words model
+Bag-of-words model (BoW model) 最早出现在NLP和IR领域. 该模型忽略掉文本的语法和语序, 用一组无序的单词(words)来表达一段文字或一个文档. 近年来, BoW模型被广泛应用于计算机视觉中. 与应用于文本的BoW类比, 图像的特征(feature)被当作单词(Word).	
+
+低层的特征就是图像特征，高层的特征就是语义特征。 Strong activation image .
+寻找receptiva field的方法，使用random patch来block掉一些区域从而找到影响区域.
+元素方面，pool层越低贡献越大。
+目标和语义方面，pool层越高贡献越大。	
