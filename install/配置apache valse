@@ -1,0 +1,19 @@
+首先将valse-master整个项目目录移至/var/www这个根目录下
+然后安装requirements中的配置
+pip install -r requirements.txt
+在这里会出现一个错误，然后使用这个命令可以去除错误
+sudo apt-get install libpq-dev
+安装了这个之后，然后类似与django的配置，使用
+python manage.py ruserver
+启动服务
+最后报一个没有config的错误
+然后参照django的模型
+SEC-Edgar
+├── SECEdgar
+│   ├── __init__.py
+│   ├── crawler.py
+│   └── test.py
+├── __init__.py
+└── config.py
+把config_template.py改成config.py
+启动服务

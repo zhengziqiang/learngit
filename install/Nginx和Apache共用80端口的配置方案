@@ -1,0 +1,93 @@
+摘要：一个典型的 Nginx + Apache 应用方案可以是Nginx 占用 80 端口，过滤静态请求，然后动态请求即 Proxy 到 Apache 的 8080 端口。Proxy 反向代理的好处是访问的时候，始终就是 80 端口，来访者不会觉察到有任何的区别。
+一个典型的 Nginx + Apache 应用方案可以是Nginx 占用 80 端口，过滤静态请求，然后动态请求即 Proxy 到 Apache 的 8080 端口。Proxy 反向代理的好处是访问的时候，始终就是 80 端口，来访者不会觉察到有任何的区别。
+
+但有的应用确非常“聪明”，识别到 Apache 所位于的端口是 8080 ，就会把相关的超链接都一并加上 :8080 的后续。这么就死定了，还能有正常访问麽？！
+
+有个方法可以解决这事，就是把 apache 也运行在80端口上。同一台服务器，有Nginx 也有 Apache，2个httpd服务，都是80，不会冲突麽？
+
+下边就是举例方法。
+Nginx.conf 的配置中
+
+    server {
+        listen 80;
+        server_name www.webyang.net;
+    }
+
+修改一下。
+
+    server {
+        listen 192.168.3.3:80;       #指定Nginx只占用某个IP的80端口。
+        listen 192.168.10.3:80;      #如果你服务器中有多个IP，还可以指定多个。
+        server_name www.webyang.net;
+    }
+
+如果你在Nginx有多个虚拟主机，每一个都需要这么修改。
+
+然后轮到 apache 的 httpd.conf
+把原来的
+Listen 80
+改为
+Listen 127.0.0.1:80
+
+跟Nginx一样，指定apache所占用的IP及端口。
+保存退出，重启apache即可生效。
+如果你 apache 上也有多个虚拟主机。无需好像Nginx那样逐一修改，只要都是 80 端口既可。
+
+如：
+
+    NameVirtualHost *:80
+    <VirtualHost *:80>
+        ServerAdmin hello@abc.com
+        DocumentRoot /data/web_server/admin
+        ServerName www.webyang.net
+    </VirtualHost>
+
+此处参考：http://blog.csdn.net/zajin/article/details/8724113
+这样你是不是以为，就已经万事大吉了？非也。
+
+这样的apache只能通过http://127.0.0.1:80才能访问，那么他还占用80端口就没有意义了。还不如apache用8080，nginx用80算了。
+所以此时如果你的服务器有多ip，除了把apache绑定在 127.0.0.1 还能绑定另外一张网卡的IP，那么问题就解决。
+
+可是一般人都是只有一个独立ip的，所以这种方法对很多人来讲就是海市蜃楼。
+修改一种思路，apache还是8080端口，修改其中的一个nginx的域名的conf文件
+
+    location / {
+        try_files $uri @apache;
+    }
+     
+    location @apache {
+        internal;
+        proxy_pass http://127.0.0.1:8080;
+    }
+     
+    location ~ .*.(php|php5)?$ {
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+此时，该域名全部动作都走Apache了，包括静态文件。
+
+也有很多人下面这种写法：
+
+    upstream zend {
+        server 127.0.0.1:8080;
+    }
+     
+    location / {
+        proxy_pass      http://zend;
+        proxy_redirect          off;
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header         X-Scheme $scheme;
+    }
+     
+    location ~ .*.(php|php5)?$ {
+        proxy_pass      http://zend;
+        proxy_redirect          off;
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header         X-Scheme $scheme;
+    }
+
+大体类似。

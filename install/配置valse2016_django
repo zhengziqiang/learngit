@@ -1,0 +1,216 @@
+SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，使用MIT许可证发行。
+
+SQLAlchemy“采用简单的Python语言，为高效和高性能的数据库访问设计，实现了完整的企业级持久模型”。SQLAlchemy的理念是，SQL数据库的量级和性能重要于对象集合；而对象集合的抽象又重要于表和行。因此，SQLAlchmey采用了类似于Java里Hibernate的数据映射模型，而不是其他ORM框架采用的Active Record模型。不过，Elixir和declarative等可选插件可以让用户使用声明语法。
+
+SQLAlchemy首次发行于2006年2月，并迅速地在Python社区中最广泛使用的ORM工具之一，不亚于Django的ORM框架。
+
+
+
+配置
+SQLALCHEMY_DATABASE_URI 	
+
+用于连接的数据库 URI 。例如:
+
+    sqlite:////tmp/test.db
+    mysql://username:password@server/db
+
+
+
+
+
+要让Django支持Mysql数据库，我们需要改一下配置文件settings.py（mysite/mysite目录下面）。知道DATABASES进行如下修改即可。
+复制代码
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.mysql',
+
+        'NAME': 数据库名,
+
+        'USER': '用户名,
+
+        'PASSWORD': '密码',
+
+        'HOST': '127.0.0.1',
+
+        'PORT': '3306',
+
+    }
+
+}
+
+
+
+
+安装 MySQL
+1. Ubuntu 中安装 MySQL
+
+$ sudo apt-get install mysql-server mysql-client
+## 在过程中按照提示输入 mysql root 用户的密码，此密码将用于 settings.py 中。
+
+安装完成之后，可于命令行中进入 mysql：
+
+$ mysql -u root -p
+Enter password: ## 输入 mysql root 用户密码，进入数据库
+
+创建数据库 xblog
+
+mysql> create database xblog default charset utf8 collate utf8_general_ci;
+Query OK, 1 row affected (0.20 sec)
+
+2. 安装 MySQLdb
+
+(env_django)shengan@ubuntu:~/mysite$ pip install mysql-python
+
+若是安装过程有问题，可安装下述软件包，然后再行安装 MySQLdb
+
+sudo apt-get install python-setuptools
+sudo apt-get install libmysqld-dev
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install python-dev
+
+进入 python 交互式命令行，输入 import MySQLdb 检测是否安装成功：
+
+>>> import MySQLdb    ## 未报错即表示安装成功
+
+至此，方可说 MySQL 的安装与配置均已完成。
+
+
+
+二、常用命令
+
+　　1、显示当前数据库服务器中的数据库列表：
+
+　　mysql> SHOW DATABASES;
+
+　　2、建立数据库：
+
+　　mysql> CREATE DATABASE 库名;
+
+　　3、建立数据表：
+
+　　mysql> USE 库名;
+
+　　mysql> CREATE TABLE 表名 (字段名 VARCHAR(20), 字段名 CHAR(1));
+
+　　4、删除数据库：
+
+　　mysql> DROP DATABASE 库名;
+
+　　5、删除数据表：
+
+　　mysql> DROP TABLE 表名;
+
+　　6、将表中记录清空：
+
+　　mysql> DELETE FROM 表名;
+
+　　7、往表中插入记录：
+
+　　mysql> INSERT INTO 表名 VALUES ("hyq","M");
+
+　　8、更新表中数据：
+
+　　mysql-> UPDATE 表名 SET 字段名1='a',字段名2='b' WHERE 字段名3='c';
+
+　　9、用文本方式将数据装入数据表中：
+
+　　mysql> LOAD DATA LOCAL INFILE "D:/mysql.txt" INTO TABLE 表名;
+
+　　10、导入.sql文件命令：
+
+　　mysql> USE 数据库名;
+
+　　mysql> SOURCE d:/mysql.sql;
+
+　　11、命令行修改root密码：
+
+　　mysql> UPDATE mysql.user SET password=PASSWORD('新密码') WHERE  User='root';
+
+　　mysql> FLUSH PRIVILEGES;
+
+
+配置uwsgi
+
+创建应用目录
+
+在部署之前先在/work下面创建应用目录，并将代码从服务器上同步下来。
+
+mkdir /work/demoapp/
+cd /work/demoapp/
+git clone git://****
+
+配置uWSGI
+
+在应用目录中创建一个uWSGI的配置文件/work/demoapp/uwsgi_configuration.ini，配置内容如下：
+
+[uwsgi]
+# 应用目录
+base = /work/demoapp/
+
+# 应用名称
+app = demoapp
+# 获取app的python模块名称
+module = icetea_server
+# 在模块中的app名称
+callable = app
+
+# 如果是使用venv的，使用这个python环境
+# home = %(base)/venv
+pythonpath = %(base)
+
+
+
+
+mysql配置表和字符
+
+通过命令提示符创建表
+
+通过 mysql> 命令窗口可以很简单的创建MySQL数据表。你可以使用 SQL 语句 CREATE TABLE 来创建数据表。
+实例
+
+以下为创建数据表 runoob_tbl 实例:
+
+root@host# mysql -u root -p
+Enter password:*******
+mysql> use RUNOOB;
+Database changed
+mysql> CREATE TABLE runoob_tbl(
+   -> runoob_id INT NOT NULL AUTO_INCREMENT,
+   -> runoob_title VARCHAR(100) NOT NULL,
+   -> runoob_author VARCHAR(40) NOT NULL,
+   -> submission_date DATE,
+   -> PRIMARY KEY ( runoob_id )
+   -> );
+Query OK, 0 rows affected (0.16 sec)
+mysql>
+
+# 用于和nginx通讯的socket文件路径
+socket = /var/www/demoapp/icetea_uwsgi.sock
+
+# socket文件的权限
+chmod-socket = 664
+
+# log文件的路径
+logto = /var/log/uwsgi/icetea_uwsgi.log
+
+创建上述中涉及到的两个目录，/var/www/demoapp/目录用于存放应用修改的文件，例如此时的socket文件以及其他的临时文件，/var/log/uwsgi存放应用的log文件，这两个目录chown到当前用户，然后在当前用户下，可以通过uWSGI使用此配置文件运行。
+
+
+
+
+在使用mysql数据库过程中，遇到了错误ERROR 1146 (42S02)：Table doesn’t exist，经过了两天，终于解决了这个问题。引起该错误的原因不同，对应的解决方法也不同。这里只针对我的情况进行一下说明。可能写的比较乱，希望你慢慢看，下面是我整个从犯错误到解决问题的整个过程，有助于你更好的了解相关知识。
+     先说一下发生该错误的情形。我是将别人的数据库目录下的data文件夹直接复制过来的，里面有三个数据库mysql、test和backupctrl，主要想要backupctrl数据库，记住不是备份，是拷贝，而且backupctrl是使用innodb作为存储引擎的，这两方面综合起来就导致了1146这个错误。
+       因为要使用innodb做存储引擎，所以要对my.ini文件进行相应的修改。在my.ini文件中，你可以找到关于innodb的相关设置，但是被注释掉了。因为mysql5.1版本后，innodb不在作为默认的设置了。首先将skip-innodb注释掉，然后需要设置正确innodb的相关参数。
+       采用innodb存储引擎，关系到data文件夹下面的一些文件：ib_logfile0、ib_logfile1和ibdata1，另外还有一个就是数据库名下面的众多.frm文件。先对这几个文件作简要介绍。
+       ib_logfile0和ib_logfile1是关于数据库的一些日志文件；
+       .frm文件是数据库中很多的表的结构描述文件；
+       ibdata1文件时数据库的真实数据存放文件。
+       在将别人的data文件夹整个复制过来后，你到mysql目录下的bin文件夹下运行命令：
+       mysql  --console
+       此时，你会发现很多的错误提示，该命令就是对环境进行测试的。如果你不理会这些错误，进入数据库，用show tables；命令发现数据库表存在，但是执行select等操作就会出现1146：Table doesn’t exist这个错误了。
+     其实这是由ibdata1文件的错误引起的，这个应该在日志文件ib_logfile0和ib_logfile1中找到（这个本人没有验证），于是把ibdata1文件删除掉，再次执行该命令，发现没有提示错误了，但进入数据库以后，操作仍就导致1146这个错误。后来仔细一下，也是，你说你把ibdata1文件删除，相当于把数据库的真实数据删除了，这时你就会问为什么数据库表还存在呢，都能看到（其实我当初就是这么想的），因为数据库表结构的描述是在.frm的众多文件中的，所以能通过show tables；查看到。
+       那么下一个问题就出来了：ibdata1文件是从别人那里拷贝过来的，为什么在那边能用，到我这边就不能用了呢？这就是最核心的问题所在，因为mysql是采用缓冲方式来讲数据写入到ibdata1文件中的，这正是fflush()函数存在的理由。因此当别人的mysql在运行时，你对data文件夹进行拷贝，即对ibdata1进行拷贝肯定会导致该文件中的数据出错的（具体错误原因没有深入学习）。
+       知道了上面的问题，解决就简单多了，呵呵。首先，将别人的mysql服务停止（这个就不用说了吧，我的前两篇博文中有，你可以参考），然后在拷贝data文件夹，替换到你的相应目录下。这样，你再按照我的博文http://jazka.blog.51cto.com/809003/329423中介绍的方法对数据库进行操作就可以了。
+       网上查找解决办法时，发现也有不少人有这个问题，而按照停止服务再拷贝的方式还是不行（我刚开始也不行，不过后来就好了，怪了，不知道为什么）。所以这里再说一种方法。首先在自己的mysql下，建立一个你即将要拷贝的数据库（数据库名要一样，里面不需要建表），然后将所有的.frm文件拷贝到你建的数据库文件夹下，此时再次进入mysql，用show  tables查看表是否已经建立起来了。然后停止你自己的mysql服务，发现在data文件下面已经有ib_logfile0、ib_logfile1和ibdata1三个文件了（免安装版解压后是没有的），之后停掉别人的mysql服务，只将ibdata1文件拷贝过来进行覆盖，最后启动你自己的mysql服务就可以对数据库进行正常操作了。
