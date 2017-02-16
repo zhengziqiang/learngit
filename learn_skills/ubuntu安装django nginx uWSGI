@@ -1,0 +1,160 @@
+1.安装pip
+
+sudo apt-get update
+sudo apt-get install python-pip
+如果您使用python3
+sudo apt-get update
+sudo apt-get install python3-pip
+
+2.使用pip 安装virtualenv 和 virtualenvwrapper
+
+sudo pip install virtualenv virtualenvwrapper
+如果您使用python3
+
+sudo pip3 install virtualenv virtualenvwrapper
+问题：locale.Error: unsupported locale setting
+解决：
+
+sudo apt-get install language-pack-id
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+sudo dpkg-reconfigure locales
+3.配置环境变量
+
+echo "export WORKON_HOME=~/Env" >> ~/.bashrc
+echo "source /usr/local/bin/    virtualenvwrapper.sh" >> ~/.bashrc
+4.初始化脚步
+
+source ~/.bashrc
+5.创建虚拟目录
+
+mkvirtualenv firstsite
+6.安装django
+
+pip install django
+7.创建django项目
+
+cd ~
+django-admin.py startproject firstsite
+8.初始化django项目
+
+cd ~/firstsite
+./manage.py migrate
+./manage.py createsuperuser
+9.修改项目static
+
+nano firstsite/settings.py
+在settings.py中
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+10.收集一下静态文件
+
+./manage.py collectstatic
+11.更新一下防火墙
+
+sudo ufw allow 8080
+12.运行一下项目
+
+./manage.py runserver 0.0.0.0:8080
+13.浏览器里查看一下
+
+http://域名或ip:8080
+14.退出virtualenv环境
+
+deactivate
+如果您想再次进入可以 workon firstsite
+
+15.安装uWSGI
+
+sudo apt-get install python-dev
+sudo pip install uwsgi
+16.测试是否安装好了
+
+uwsgi --http :8080 --home /home/guanli/Env/firstsite --chdir /home/guanli/firstsite -w firstsite.wsgi
+请注意，将/home/guanli/替换成你自己的路径
+测试中admin页面的css可能会无法显示
+
+17.设置配置文件
+
+sudo mkdir -p /etc/uwsgi/sites
+cd /etc/uwsgi/sites
+18.编写项目ini文件
+
+sudo vi firstsite.ini
+
+
+[uwsgi]
+project = firstsite
+uid = guanli
+base = /home/%(uid)
+
+chdir = %(base)/%(project)
+home = %(base)/Env/%(project)
+module = %(project).wsgi:application
+
+master = true
+processes = 5
+
+socket = /run/uwsgi/%(project).sock
+chown-socket = %(uid):www-data
+chmod-socket = 660
+vacuum = true
+创建系统unit file 为uWSGI
+
+sudo vi /etc/systemd/system/uwsgi.service
+[Unit]
+Description=uWSGI Emperor service
+
+[Service]
+ExecStartPre=/bin/bash -c 'mkdir -p /run/uwsgi; chown guanli:www-data /run/uwsgi'
+ExecStart=/usr/local/bin/uwsgi --emperor /etc/uwsgi/sites
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+20.配置nginx
+
+sudo apt-get install nginx
+21.创建nginx站点
+
+sudo vi /etc/nginx/sites-available/firstsite
+
+server {
+    listen 80;
+    server_name waikanvip.com 121.194.213.236;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/guanli/firstsite;
+    }
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/run/uwsgi/firstsite.sock;
+    }
+}
+22.创建软连接到enabled目录
+
+sudo ln -s /etc/nginx/sites-available/  firstsite /etc/nginx/sites-enabled
+23.检测一下配置是否正确
+
+sudo ln -s /etc/nginx/sites-available/firstsite /etc/nginx/sites-enabled
+24.重启nginx
+
+sudo systemctl restart nginx
+25 启动uwsgi
+
+sudo systemctl start uwsgi
+26.修改防火墙 nginx策略
+
+sudo ufw delete allow 8080
+sudo ufw allow 'Nginx Full'
+27.自动启动
+
+sudo systemctl enable nginx
+sudo systemctl enable uwsgi
+配置完成
