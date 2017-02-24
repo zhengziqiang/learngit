@@ -1,0 +1,14 @@
+which protoc
+找到protoc的安装路径
+然后删掉这个安装路径
+
+
+I managed to uninstall protoc 3.0.0 (I am posting the answer in a beginner manner, the way I needed it explained to understand):
+
+1) The remove command does not work, because the instructions I followed on protocol buffer page uses make to build the tool - you only use remove when installing with apt-get
+
+2) To remove all libraries built with make, go to the folder where the protoc files were downloaded and run make uninstall. That worked. However, when I checked again with protoc --version, I still got libprotoc 3.0.0. I think the reason is because I followed one of he instructions to change the path of the installation (./configure --prefix=/usr) and therefore I needed to use rm `which protoc` to manually delete the leftovers from protoc 3, because the make unistall was not pointing to it. After that, protoc was completely gone.
+
+3) I installed the version I needed (any protoc 2) with apt-get install protobuf-compiler and now I have libprotoc 2.5.0
+
+Please feel free to comment further.

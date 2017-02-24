@@ -1,0 +1,25 @@
+
+./include/caffe/util/mkl_alternate.hpp:14:19: fatal error: cblas.h: 没有那个文件或目录
+ #include <cblas.h>
+
+
+sudo apt-get install libopenblas-dev                  
+
+
+
+./include/caffe/util/hdf5.hpp:6:18: fatal error: hdf5.h: 没有那个文件或目录
+ #include "hdf5.h"
+
+
+
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+
+
+
+/usr/bin/ld: 找不到 -lcblas
+/usr/bin/ld: 找不到 -latlas
+collect2: error: ld returned 1 exit status
+Makefile:572: recipe for target '.build_release/lib/libcaffe.so.1.0.0-rc5' failed
+
+
+
