@@ -1,0 +1,15 @@
+
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
+
+
+
+    Configure /usr/local/cuda/include/host_config.h as suggested.
+    sudo apt-get autoremove libprotobuf-dev protobuf-compiler
+    then compile the protobuf-2.6.1 from src and install
+    Please config the gcc when you compile protobuf
+    ./configure --prefix=/usr/local/ CC=/usr/bin/gccS
+
+
+import caffe 
+import sys
+sys.path.append("/home/me/mypy") 

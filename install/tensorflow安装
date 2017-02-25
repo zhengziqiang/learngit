@@ -1,0 +1,20 @@
+$ bazel build --config opt //tensorflow/tools/pip_package:build_pip_package
+
+# To build with support for CUDA:
+$ bazel build --config opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+
+# Alternatively, to build with support for OpenCL (Experimental):
+$ bazel build --config opt --config=sycl //tensorflow/tools/pip_package:build_pip_package
+
+$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+
+# The name of the .whl file will depend on your platform.
+$ sudo pip install /tmp/tensorflow_pkg/tensorflow-1.0.0-py2-none-any.whl
+
+
+安装bazel
+$ echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+$ curl https://storage.googleapis.com/bazel-apt/doc/apt-key.pub.gpg | sudo apt-key add -
+$ sudo apt-get update
+$ sudo apt-get install bazel
+$ sudo apt-get upgrade bazel
