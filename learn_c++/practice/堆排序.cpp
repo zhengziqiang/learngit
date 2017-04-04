@@ -23,7 +23,7 @@ void HeapAdjust(int *a,int i,int size)  //调整堆
         {
             max=lchild;
         }    
-        if(rchild<=size&&a[rchild]>a[max])
+        if(rchild<=size&&a[rchild]>a[max])//找到更大的那个值
         {
             max=rchild;
         }

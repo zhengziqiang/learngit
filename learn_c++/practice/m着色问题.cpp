@@ -40,7 +40,7 @@ void m_color(int i,int m,int n,int *vcolor,int **w){
 		else{
 			for(color=1;color<=m;color++){
 				vcolor[i+1]=color;
-				m_color(i+1,m,n,vcolor,w);
+				m_color(i+1,m,n,vcolor,w);//使用递归，一般解决这类问题都是使用递归的方法
 			}
 		}
 	}
