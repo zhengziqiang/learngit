@@ -1,4 +1,7 @@
-
+dependences
+autoconf
+libtool
+suin autoconf libtool
 export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
 
 
@@ -7,7 +10,7 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
     sudo apt-get autoremove libprotobuf-dev protobuf-compiler
     then compile the protobuf-2.6.1 from src and install
     Please config the gcc when you compile protobuf
-    ./configure --prefix=/usr/local/ CC=/usr/bin/gccS
+    ./configure --prefix=/usr/local/ CC=/usr/bin/gcc
 
 
 import caffe 
