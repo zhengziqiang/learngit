@@ -102,13 +102,14 @@ void btree::postorder(tree *tmp){
 		cout<<tmp->data<<" ";
 	}
 }
+//叶子的个数
 int btree::find_leaf(tree *tmp){
 	if(tmp==NULL){
 		return 0;
 	}
 	else{
 		if(tmp->left==NULL&&tmp->right==NULL)
-			return n+=1;
+			return n+=1;//递归出口
 		else{
 			find_leaf(tmp->left);
 			find_leaf(tmp->right);
@@ -116,6 +117,7 @@ int btree::find_leaf(tree *tmp){
 		return n;
 	}
 }
+//节点的个数
 int btree::find_node(tree *tmp){
 	if(tmp==NULL){
 		return 0;
