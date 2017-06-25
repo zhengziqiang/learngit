@@ -18,7 +18,7 @@ void combination_helper(vector <int> &candidates,int start,int target,vector <in
 		return ;
 	}
 	for(i=start;i<candidates.size();i++){
-		if(i>start&&candidates[i]==candidates[i-1])
+		if(i>start&&candidates[i]==candidates[i-1])//逃过某一些数的操作
 			continue;
 		solution.push_back(candidates[i]);
 		combination_helper(candidates,i,target-candidates[i],solution,result);//递归
