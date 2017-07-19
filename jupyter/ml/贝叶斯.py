@@ -8,4 +8,8 @@ class bayes:
 		for line in datalist:
 			vocabu=vocabu | set(line)
 		return list(vocabu)
+
+    def _setwordvec(self,vocabu,input):
+
+
 	

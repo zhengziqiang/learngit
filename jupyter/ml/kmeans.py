@@ -20,7 +20,7 @@ class kmeans():
         centroids=np.empty((k,n))
         for j in range(n):
             minj=min(data[:,j])
-            rangej=float(max(data[:,j]-minj))
+            rangej=float(max(data[:,j]-minj))#按比例的加上一些值
             centroids[:,j]=(minj+rangej*np.random.rand(k,1)).flatten()#拉伸成为一个list
         return centroids
 
@@ -55,8 +55,8 @@ class kmeans():
                 break
             for i in range(self._k):
                 index_all=self._clussassign[:,0]#将所有的下标值都提取出来
-                value=np.nonzero(index_all==i)
-                plsinclust=data[value[0]]
+                value=np.nonzero(index_all==i)#属于第几类的值
+                plsinclust=data[value[0]]#提取这些类别相同的值的特征
                 self._centroids[i,:]=np.mean(plsinclust,axis=0)
         self._labels=self._clussassign[:,0]
         self._css=self._clussassign[:,1]

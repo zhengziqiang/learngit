@@ -1,3 +1,4 @@
+#coding=utf-8
 import numpy as np
 class adaboost(object):
 	def __init__(self,max_iter=100,numsteps=10,num_iter=50):
