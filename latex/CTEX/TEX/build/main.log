@@ -1,0 +1,77 @@
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.1)  25 JUN 2017 11:03
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/home/zzq/texmf/tex/latex/ctex/ctex.sty
+Package: ctex 2010/01/22 v0.97 ctex macros package
+
+(/home/zzq/texmf/tex/latex/ctex/opt/ctex-common-opts.def)
+(/usr/share/texlive/texmf-dist/tex/latex/ctex/config/ctexopts.cfg
+! Undefined control sequence.
+l.29 \GetIdInfo
+               $Id: ctex.dtx 4e02493 2016-02-02 17:10:17 +0800 Qing Lee <sob...
+
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.29 \GetIdInfo$
+                Id: ctex.dtx 4e02493 2016-02-02 17:10:17 +0800 Qing Lee <sob...
+
+? 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 29.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 29.
+! Undefined control sequence.
+l.31 \ProvidesExplFile
+                      {ctexopts.cfg}
+? 
+! Undefined control sequence.
+l.32   {\ExplFileDate
+                     }{2.3}{\ExplFileDescription}
+? 
+! Undefined control sequence.
+l.32   {\ExplFileDate}{2.3}{\ExplFileDescription
+                                                }
+? 
+! Emergency stop.
+l.32   {\ExplFileDate}{2.3}{\ExplFileDescription
+                                                }
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 275 strings out of 493638
+ 3331 string characters out of 6146797
+ 53571 words of memory out of 5000000
+ 3754 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 27i,1n,17p,185b,56s stack positions out of 5000i,500n,10000p,200000b,80000s
+No pages of output.

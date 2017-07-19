@@ -1,0 +1,112 @@
+\ProvidesPackage{beamerthemetsd2011} % based on a style created by Thomas Deselaers and the Warsaw 
+                                     % style of Till Tantau
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectcolormodel{cmyk}
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\thetsdaddress}{Tecnol\'ogico de Costa Rica}
+\newcommand{\thetsdemail}{tsd2011@ietec.org}
+\newcommand{\thetsdurl}{http://tsd2011.ietec.org}
+\newcommand{\thetsdlogofile}{logo}
+
+\newcommand{\tsdaddress}[1]{\renewcommand{\thetsdaddress}{#1}}
+\newcommand{\tsdemail}[1]{\renewcommand{\thetsdemail}{#1}}
+\newcommand{\tsdurl}[1]{\renewcommand{\thetsdurl}{#1}}
+\newcommand{\tsdlogofile}[1]{\renewcommand{\thetsdlogofile}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useinnertheme[shadow=true]{rounded}
+\useoutertheme{shadow}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+\setbeamerfont{footline}{fg=white, size=\normalsize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[leftskip=1cm,colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,sep=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{  
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{center}
+      \colorbox{structure}{\color{white}\strut\rule{105mm}{0pt}\normalsize{Conference for Technologies for Sustainable Development TSD2011 \hfill -- \hfill DOCINADE \hfill -- \hfill Cartago, Costa Rica \hfill -- \hfill February 2011}\rule{105mm}{0pt}}
+    \end{center}
+    
+    \begin{columns}[T]
+      \begin{column}{.79\paperwidth}
+        \vskip1cm
+        \begin{center}
+          \usebeamercolor{title in head/foot}{\textbf{\VERYHuge{\inserttitle}}\\[1ex]}
+          \usebeamercolor{author in head/foot}{\large{\insertauthor}\\[1ex]}
+          \usebeamercolor{institute in head/foot}{\large{\insertinstitute}\\[3ex]}     
+        \end{center}
+      \end{column}
+      \begin{column}{.2\paperwidth}
+        \vskip1.5cm
+        \begin{center}
+          \includegraphics[width=.85\linewidth]{\thetsdlogofile}
+        \end{center}
+        \vskip1.5cm
+      \end{column}
+      \begin{column}{.03\paperwidth}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+  
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{6pt}
+  \end{beamercolorbox}
+  
+  \begin{beamercolorbox}[ht=1\baselineskip,leftskip=1cm]{footline}%
+    \hfill \thetsdaddress \hfill -- \hfill
+    \texttt{\thetsdemail} \hfill -- \hfill
+    \texttt{\thetsdurl}  \hfill \rule{0pt}{0pt}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<all>
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "poster"
+%%% TeX-PDF-mode: t
+%%% End: 

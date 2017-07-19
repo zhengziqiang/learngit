@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{The Main difficulties}{4}{0}{1}
+\beamer@sectionintoc {2}{Using chemistry packages with \LaTeX {}}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Chemical equations with \texttt {mhchem}}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Getting started with some \texttt {chemfig} coffee}{6}{0}{2}
+\beamer@subsectionintoc {2}{3}{Experiments with water and rings}{7}{0}{2}
+\beamer@sectionintoc {3}{Where to go next\dots {}}{8}{0}{3}
