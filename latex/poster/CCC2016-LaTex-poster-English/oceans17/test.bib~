@@ -1,0 +1,108 @@
+@article{qin2015deepfish,
+  title={Deepfish: accurate underwater live fish recognition with a deep architecture},
+  author={Qin, Hongwei and Li, Xiu and Liang, Jian and Peng, Yigang and Zhang, Changshui},
+  journal={Neurocomputing},
+  year={2015}
+}
+@inproceedings{ge2015modelling,
+  title={Modelling local deep convolutional neural network features to improve fine-grained image classification},
+  author={Ge, ZongYuan and McCool, Chris and Sanderson, Conrad and Corke, Peter},
+  booktitle={Image Processing (ICIP), 2015 IEEE International Conference on},
+  pages={4112--4116},
+  year={2015},
+  organization={IEEE}
+}
+@article{chuang2016feature,
+  title={A Feature Learning and Object Recognition Framework for Underwater Fish Images},
+  author={Chuang, Meng-Che and Hwang, Jenq-Neng and Williams, Kresimir},
+  journal={IEEE Transactions on Image Processing},
+  volume={25},
+  number={4},
+  pages={1862--1872},
+  year={2016},
+  publisher={IEEE}
+}
+@inproceedings{anantharajah2014local,
+  title={Local inter-session variability modelling for object classification},
+  author={Anantharajah, Kaneswaran and Ge, ZongYuan and McCool, Chris and Denman, Simon and Fookes, Clinton and Corke, Peter and Tjondronegoro, Dian and Sridharan, Sridha},
+  booktitle={IEEE Winter Conference on Applications of Computer Vision},
+  pages={309--316},
+  year={2014},
+  organization={IEEE}
+}
+@inproceedings{lu2013underwater,
+  title={Underwater image enhancement using guided trigonometric bilateral filter and fast automatic color correction},
+  author={Lu, Huimin and Li, Yujie and Serikawa, Seiichi},
+  booktitle={2013 IEEE International Conference on Image Processing},
+  pages={3412--3416},
+  year={2013},
+  organization={IEEE}
+}
+
+@article{jia2014caffe,
+  Author = {Jia, Yangqing and Shelhamer, Evan and Donahue, Jeff and Karayev, Sergey and Long, Jonathan and Girshick, Ross and Guadarrama, Sergio and Darrell, Trevor},
+  Journal = {arXiv preprint arXiv:1408.5093},
+  Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
+  Year = {2014}
+}
+@article{rodriguez2015fish,
+  title={Fish tracking in vertical slot fishways using computer vision techniques},
+  author={Rodr{\'\i}guez, {\'A}lvaro and Berm{\'u}dez, Mar{\'\i}a and Rabu{\~n}al, Juan R and Puertas, Jer{\'o}nimo},
+  journal={Journal of Hydroinformatics},
+  volume={17},
+  number={2},
+  pages={275--292},
+  year={2015},
+  publisher={IWA Publishing}
+}
+
+@inproceedings{sharif2014cnn,
+  title={CNN features off-the-shelf: an astounding baseline for recognition},
+  author={Sharif Razavian, Ali and Azizpour, Hossein and Sullivan, Josephine and Carlsson, Stefan},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops},
+  pages={806--813},
+  year={2014}
+}
+@inproceedings{spampinato2010automatic,
+  title={Automatic fish classification for underwater species behavior understanding},
+  author={Spampinato, Concetto and Giordano, Daniela and Di Salvo, Roberto and Chen-Burger, Yun-Heh Jessica and Fisher, Robert Bob and Nadarajan, Gayathri},
+  booktitle={Proceedings of the first ACM international workshop on Analysis and retrieval of tracked events and motion in imagery streams},
+  pages={45--50},
+  year={2010},
+  organization={ACM}
+}
+@inproceedings{rodrigues2010automatic,
+  title={Automatic fish species classification based on robust feature extraction techniques and artificial immune systems},
+  author={Rodrigues, Marco TA and Padua, Fhivio LC and Gomes, Rog{\'e}rio M and Soares, Gabriela E},
+  booktitle={Bio-Inspired Computing: Theories and Applications (BIC-TA), 2010 IEEE Fifth International Conference on},
+  pages={1518--1525},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{krizhevsky2012imagenet,
+  title={Imagenet classification with deep convolutional neural networks},
+  author={Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
+  booktitle={Advances in neural information processing systems},
+  pages={1097--1105},
+  year={2012}
+}
+
+@inproceedings{socher2012convolutional,
+  title={Convolutional-Recursive Deep Learning for 3D Object Classification.},
+  author={Socher, Richard and Huval, Brody and Bath, Bharath Putta and Manning, Christopher D and Ng, Andrew Y},
+  booktitle={NIPS},
+  volume={3},
+  number={7},
+  pages={8},
+  year={2012}
+}
+
+@inproceedings{lee2009convolutional,
+  title={Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations},
+  author={Lee, Honglak and Grosse, Roger and Ranganath, Rajesh and Ng, Andrew Y},
+  booktitle={Proceedings of the 26th annual international conference on machine learning},
+  pages={609--616},
+  year={2009},
+  organization={ACM}
+}

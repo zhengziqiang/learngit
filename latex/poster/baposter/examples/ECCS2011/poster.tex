@@ -1,0 +1,184 @@
+% --------------------------------------------------------------------------- %
+% Poster for the ECCS 2011 Conference about Elementary Dynamic Networks.      %
+% --------------------------------------------------------------------------- %
+% Created with Brian Amberg's LaTeX Poster Template. Please refer for the     %
+% attached README.md file for the details how to compile with `pdflatex`.     %
+% --------------------------------------------------------------------------- %
+% $LastChangedDate:: 2011-09-11 10:57:12 +0200 (V, 11 szept. 2011)          $ %
+% $LastChangedRevision:: 128                                                $ %
+% $LastChangedBy:: rlegendi                                                 $ %
+% $Id:: poster.tex 128 2011-09-11 08:57:12Z rlegendi                        $ %
+% --------------------------------------------------------------------------- %
+\documentclass[a0paper,portrait]{baposter}
+
+\usepackage{relsize}		% For \smaller
+\usepackage{url}			% For \url
+\usepackage{epstopdf}	% Included EPS files automatically converted to PDF to include with pdflatex
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{comment}
+\usepackage[fleqn]{amsmath}
+\usepackage{multirow}
+\usepackage{comment}
+%%% Global Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{pix/}}	% Root directory of the pictures 
+\tracingstats=2			% Enabled LaTeX logging with conditionals
+
+%%% Color Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{bordercol}{RGB}{40,40,40}
+\definecolor{headercol1}{RGB}{186,215,230}
+\definecolor{headercol2}{RGB}{80,80,80}
+\definecolor{headerfontcol}{RGB}{0,0,0}
+\definecolor{boxcolor}{RGB}{186,215,230}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Utility functions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Save space in lists. Use this after the opening of the list %%%%%%%%%%%%%%%%
+\newcommand{\compresslist}{
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\typeout{Poster rendering started}
+
+%%% Setting Background Image %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\background{
+	\begin{tikzpicture}[remember picture,overlay]%
+	\draw (current page.north west)+(-2em,2em) node[anchor=north west]
+	{\includegraphics[height=1.1\textheight]{background}};
+	\end{tikzpicture}
+}
+
+%%% General Poster Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Eye Catcher, Title, Authors and University Images %%%%%%%%%%%%%%%%%%%%%%
+\begin{poster}{
+	grid=false,
+	% Option is left on true though the eyecatcher is not used. The reason is
+	% that we have a bit nicer looking title and author formatting in the headercol
+	% this way
+	%eyecatcher=false, 
+	borderColor=bordercol,
+	headerColorOne=headercol1,
+	headerColorTwo=headercol2,
+	headerFontColor=headerfontcol,
+	% Only simple background color used, no shading, so boxColorTwo isn't necessary
+	boxColorOne=boxcolor,
+	headershape=roundedright,
+	headerfont=\Large\sf\bf,
+	textborder=rectangle,
+	background=user,
+	headerborder=open,
+  boxshade=plain
+}
+%%% Eye Cacther %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	Eye Catcher, empty if option eyecatcher=false - unused
+}
+%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\sf\bf
+	Fish recognition using deep convolutional neural network and data augmentation
+}
+%%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	\vspace{1em} Ziqiang Zheng, Chao Wang, Zhibin Yu*, Haiyong Zheng, Weiwei Wang\\
+%	{\smaller zhengziqiang1@gmail.com, wangchaoplus@gmail.com, yuzhibin@ouc.edu.cn, zhenghaiyong@ouc.edu.cn, 17854206960@163.com}\\
+	{\smaller Corresponding author: yuzhibin@ouc.edu.cn}
+}
+%%% Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+% The logos are compressed a bit into a simple box to make them smaller on the result
+% (Wasn't able to find any bigger of them.)
+
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+	\fbox{
+		\begin{minipage}{10em}
+			\includegraphics[width=10em,height=10em]{logo_resize}
+		\end{minipage}
+	}
+}
+%\includegraphics[width=\linewidth]{logo_resize}
+
+
+\headerbox{Problem}{name=problem,column=0,row=0}{
+\quad Nowadays, as a sub topic of computer vision and fishery industry, fish recognition is still a challenging work not only because of various kinds of fish, but also because of the complex background of images.
+
+%\includegraphics[width=\linewidth]{time_windows}
+}
+
+\headerbox{Introduction}{name=definitions,column=0,below=problem}{
+\quad In this paper, we introduce two methods to improve the classification accuracy. We have done some data preprocessing before training our model. The first method is data augmentation and the second is based on some image processing methods. First we make a mask in the fish region and make the fish region black, we regard these processed images as the NoF fish images. Then we achieve data augmentation. At last we use the convolutional neural network (CNN) as the classifier.
+\begin{center}
+\includegraphics[width=0.9\linewidth]{2}
+\end{center}
+}
+
+
+
+\headerbox{Experimental Results}{name=models,column=0,below=definitions}{
+\quad The table shows the test loss in the Kaggle competition. We mainly have used two different architectures of networks. The first two columns indicate the benchmarks. The other columns indicate the test loss with using our methods. Comparing the test loss, we can see our methods have worked.\\
+\\
+\begin{tabular}{l l l l}
+\toprule
+\textbf{Method} & \textbf{Model} & \textbf{Test loss} \\
+\midrule
+	None	& Caffenet	& 1.92 \\
+       None	& GoogleNet	& 2.56 \\
+       Rotating & Caffenet     & 1.77  \\
+       Rotating & GoogleNet   & 1.93    \\
+	Mask	& Caffenet	& 1.87   \\
+	Mask	& GoogleNet	& 2.25    \\
+	Rotating + Mask &Caffenet & 1.71   \\
+	Rotating + Mask &GoogleNet & 1.85  \\
+\bottomrule
+\end{tabular}
+
+
+
+}
+
+\headerbox{References}{name=references,column=0,below=models}{
+\smaller													% Make the whole text smaller
+\vspace{-0.4em} 										% Save some space at the beginning
+\bibliographystyle{plain}							% Use plain style
+\renewcommand{\section}[2]{\vskip 0.05em}		% Omit "References" title
+\small{
+\bibliography{sample} % Use sample.bib as the bibliography file. Change of the reference should go to file sample.bib included in CCC2016_LaTex_poster.
+}
+
+}
+
+
+\headerbox{Main Methods}{name=density,span=2,column=1,row=0}{
+
+\quad The architecture of our model used in the experiment is the convolutional neural network, which has achieved remarkable performance in image classification and object detection recently\cite{sharif2014cnn}\cite{krizhevsky2012imagenet}. There still exists the problem that our model can't distinguish between foreground and background. We make a mask of the area where the fish are located, because the mask can force our model to concentrate on the fish area by comparing the raw images and the processed images. So it can help our convolutional neural network detect the fish region. We have trained our model using both the raw images and the processed images at the same time, which can improve the robustness of the fish recognition. In consideration of the imbalance of the dataset, we got some new images by rotating some selected images. Through this method, we can increase the number of some species of fish images, which can help avoid that our model is over-fitted with some categories of fish images, And rotating the fish images can improve the robustness of detection and achieve sophisticated detection.
+\\
+\\
+\includegraphics[width=\linewidth]{11}
+}
+
+\headerbox{Verification}
+{name=degreeDistribution,span=2,column=1,below=density,above=bottom}{
+
+\quad In order to prove that the fish region has really made contribution in the fish recognition, we modified Caffe\cite{jia2014caffe} to get the pooling images. And the figure shows the comparison between the raw images and the pooling images. In consideration of the big number of the pooling images, we have picked up 36 pooling images from 64 pooling images and resized each of all to merge them into one image.
+\vspace{-0.2em}
+\begin{center}
+	\includegraphics[width=\linewidth]{merge}
+\end{center}
+\vspace{-0.2em}
+\quad From the two different images, we can see that the fish region is brighter than other regions in most of the pooling images, and this proves that fish make more contribution than the background for the classification. Our research can benefit the development of the marine resources, as well as commercial applications such as fisheries and aquaculture.
+}
+
+\end{poster}
+\end{document}

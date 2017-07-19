@@ -1,0 +1,359 @@
+%%
+%% Template file for conference poster
+%% TSD2011
+%% Technologies for the Sustainable Development
+%% 2011
+%% 
+%% Based on the examples of the beamerposter package from the
+%% I6 Informatik Institute at RWTH-Aachen University.
+
+\documentclass[final,hyperref={pdfpagelabels=false}]{beamer}
+\mode<presentation>{
+  \usetheme{tsd2011}
+}
+
+\usepackage{grffile}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     Please complete the following commands with the corresponding data    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\huge $<$Poster Title Here$>$}
+\author{$<$author or authors$>$}
+\institute[$<$Short institute$>$]{$<$Department or Lab, University, City$>$}
+\date[Feb. 3-4, 2011]{Feb. 3-4, 2011}
+ 
+\tsdaddress{\insertshortinstitute}
+\tsdemail{$<$your e-mail$>$}
+\tsdurl{$<$your URL (like http://tsd2011.ietec.org)$>$}
+\tsdlogofile{logo} %% the extension is automatically determined!
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+
+\usepackage{array,booktabs,tabularx}
+\newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
+
+\newcommand{\pphantom}{\textcolor{red}} % phantom introduces a vertical space
+                                        % in p formatted table columns??!!
+
+\listfiles
+\graphicspath{{fig/}}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\columnheight}
+\setlength{\columnheight}{105cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \begin{columns}
+    % ---------------------------------------------------------%
+    % Set up first column 
+    \begin{column}{.49\textwidth}
+      \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
+        % tweaks the width, makes a new \textwidth for the column
+        \begin{minipage}[T]{.95\textwidth}  
+          % must be some better way to set the the height, width and textwidth
+          % simultaneously.
+          % Since all columns are the same length, it is all nice and tidy.
+          % You have to get the height empirically
+          \parbox[t][\columnheight]{\textwidth}{
+            % ---------------------------------------------------------%
+            % fill each column with content
+            {\large{\textbf{General remarks}}}
+            \begin{itemize}
+            \item The size of the poster must be A0, i.e. 841\,mm$\times$1189\,mm
+            \item The poster should make emphasis on your results, and should expose this
+              results in a visual way through images, figures, charts, plots, equations, tables,
+              etc.
+            \item The LaTeX style takes care of most formatting issues, but if you are using 
+              other templates, then use sans-serif fonts (like arial or helvetica) with the
+              following sizes
+              \begin{itemize}
+              \item Title: 80\,pt bold
+              \item Authors: 44\,pt regular
+              \item Institute: 44\,pt regular
+              \item Block title: 40\,pt bold
+              \item Block text: 36\,pt regular
+              \end{itemize}
+            \end{itemize}
+
+            \vfill
+
+            \begin{block}{Abstract}
+              The abstract could be the same as in the final camera-ready paper, but since
+              it is recommended to reduce the amount of text in a poster, you could summarize even
+              more your abstract in the poster.
+            \end{block}
+
+            \vfill
+
+            \begin{block}{Introduction}
+              \begin{itemize}
+              \item Present your context
+                \begin{itemize}
+                \item rely on a solid bibliographical research
+                \end{itemize}
+              \item Synthesize your problem
+                \begin{itemize}
+                \item maybe your objectives here
+                \item but all the previious is just a suggestion
+                \end{itemize}
+              \end{itemize}              
+            \end{block}
+            \vfill
+            \begin{block}{Global warming}
+              \begin{columns}
+                \begin{column}{.65\textwidth}
+                  \begin{itemize}
+                  \item A second box with a more detailed problem description
+                    is suggested
+                    \begin{itemize}
+                    \item Scenario A
+                    \item Scenerio B
+                    \end{itemize}
+                  \item but they do not consider
+                    \begin{itemize}
+                    \item Condition A, or
+                    \item \alert{Strong} condition B
+                    \end{itemize}
+                  \end{itemize}
+                \end{column}
+                \begin{column}{.34\textwidth}
+                  \centering
+                  \framebox[0.9\textwidth][c]{Some nice figure}
+                \end{column}
+              \end{columns}
+              \vskip-1ex
+            \end{block}
+            \vfill
+            \begin{block}{Maybe some theoretical background}
+              \begin{itemize}
+              \item Remember that the poster should be clear
+                \begin{itemize}
+                \item so do not use too much text
+                \item but insert as many images you can
+                \end{itemize}
+              \item You may want to insert a self explanatory equation like:
+                \begin{align*}
+                  f_{pa}(A_\mathbf{u},\mathcal{G}) &=
+                  \sum_{\langle\underline{\mathcal{I}}_i,
+                               \underline{\mathcal{S}}_i\rangle\in\mathcal{G}}
+                  \frac{\displaystyle\sum_{\underline{\mathcal{R}}_j\in\underline{\mathcal{S}}_i}
+                    \left|
+                      \mathcal{P}(\underline{\mathcal{R}}_{j},
+                                  A_\mathbf{u}(\underline{\mathcal{I}}_i))
+                    \right|}
+                  {\displaystyle
+                    \sum_{\underline{\mathcal{R}}_{j} \in \underline{\mathcal{S}}_i}|
+                    \underline{\mathcal{R}}_{j}|}\\
+                  \mathcal{P}(\underline{\mathcal{R}}_{j},\mathcal{S}_i) &=
+                  \Big\{         
+                  \mathbf{p} \mid 
+                  \mathbf{p}\!\in\! \underline{\mathcal{R}}_{j}
+                  \wedge 
+                  \mathbf{p}\!\in\!\mathcal{R}_{k}, 
+                  \mathcal{R}_{k}\!\in\!\mathcal{S}_i,
+                  j=\arg\max_l | \mathcal{R}_{k}{\cap}\underline{\mathcal{R}}_{l} |
+                  \Big\}
+                \end{align*}
+                (just kidding... some explanation should be here)
+              \item Or maybe another figure
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Experimental setup}
+              \begin{itemize}
+              \item The experimental setup used to produce your results should
+                be well described
+              \item Images with you objects could be used
+                \begin{center}
+                  \includegraphics[width=0.9\textwidth]{\thetsdlogofile}
+                \end{center}
+              \end{itemize}
+            \end{block}
+          } % end of parbox used to force a the column height
+        \end{minipage}
+      \end{beamercolorbox}
+    \end{column}
+    % ---------------------------------------------------------%
+    % end the column
+
+    % ---------------------------------------------------------%
+    % Set up a column 
+    \begin{column}{.49\textwidth}
+      \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
+        \begin{minipage}[T]{.95\textwidth} % as before
+          \parbox[t][\columnheight]{\textwidth}{ % as before
+            % ---------------------------------------------------------%
+            % fill each column with content
+            
+            \begin{block}{Databases}
+              \begin{columns}
+                \begin{column}{.6\textwidth}
+                  \begin{itemize}
+                  \item Maybe you used different databases for your experiments
+                    \begin{itemize}
+                    \item for one set of conditions
+                    \item or for another setup
+                    \end{itemize}
+                  \item Some samples could be presented on the right
+                  \end{itemize}
+                \end{column}
+                \begin{column}{.39\textwidth}
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \-
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \-
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \-
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \vskip3ex
+
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \-
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \-
+                  \includegraphics[width=0.22\linewidth]{logo}
+                  \-
+                  \includegraphics[width=0.22\linewidth]{logo}
+                \end{column}
+              \end{columns}
+            \end{block}
+            \vfill
+            \begin{block}{Results 1}
+              \begin{itemize}
+              \item Results is the most important part of the poster
+              \item You will use tables and figures to present them
+              \end{itemize}
+              \vskip-0.5ex
+              \begin{table}
+                \centering
+                \small
+                \begin{tabular}{clcrrr}
+                  \toprule 
+                  Group &  Category  & Resolution & \multicolumn{3}{c @{}}{Error Rates [\%]} \\
+                  \cmidrule(l){4-6}
+                  &  &  & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c @{}}{Avrg} \\
+                  \midrule
+                  A  & Blue   & 160 $\times$ 120 & 40 &  60 & 50  \\
+                  B  & Yellow & 160 $\times$ 120 & 45 &  55 & 50  \\
+                  \addlinespace
+                  C  & Red    & 160 $\times$ 120 & 10 &  30  & 20  \\  
+                  D  & Red    & 320 $\times$ 240 & 10 &  31  & 18  \\
+                  E  & Red    & 640 $\times$ 320 & 7  &  28  & 17  \\
+                  \addlinespace
+                  F  & Green  & 160 $\times$ 120 & 5  &  10  & 7   \\ 
+                  G  & Green  & 320 $\times$ 240 & 4  &  11  & 6   \\ 
+                  H  & Green  & 640 $\times$ 320 & 3  &  10  & 5   \\
+                  \bottomrule
+                \end{tabular}
+              \end{table}
+
+              \vskip1ex
+              \begin{itemize}
+              \item Maybe another table here
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Results 2}
+              \begin{columns}
+                \begin{column}{.5\textwidth}
+                  \begin{itemize}
+                  \item Maybe here a comparison with other methods in the literature
+                  \item A table here could be nice
+                    \vskip-0.5ex
+                    \begin{table}
+                      \centering
+                      \small
+                      \begin{tabular}{clcrrr}
+                        \toprule 
+                        Group &  Category  & Resolution & \multicolumn{3}{c @{}}{Error Rates [\%]} \\
+                        \cmidrule(l){4-6}
+                        &  &  & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c @{}}{Avrg} \\
+                        \midrule
+                        A  & Blue   & 160 $\times$ 120 & 40 &  60 & 50  \\
+                        B  & Yellow & 160 $\times$ 120 & 45 &  55 & 50  \\
+                        \addlinespace
+                        C  & Red    & 160 $\times$ 120 & 10 &  30  & 20  \\  
+                        D  & Red    & 320 $\times$ 240 & 10 &  31  & 18  \\
+                        E  & Red    & 640 $\times$ 320 & 7  &  28  & 17  \\
+                        \addlinespace
+                        F  & Green  & 160 $\times$ 120 & 5  &  10  & 7   \\ 
+                        G  & Green  & 320 $\times$ 240 & 4  &  11  & 6   \\ 
+                        H  & Green  & 640 $\times$ 320 & 3  &  10  & 5   \\
+                        \bottomrule
+                      \end{tabular}
+                    \end{table}
+
+                    \vskip1ex
+                    
+                  \end{itemize}
+                \end{column}
+                \begin{column}{.49\textwidth}                
+                  \vskip-3ex
+                  \begin{itemize}
+                  \item One example figure of their method
+
+                      \includegraphics[width=0.9\linewidth]{logo}
+
+                  \item Another example figure with our method
+
+                      \includegraphics[width=0.9\linewidth]{logo}
+
+                  \end{itemize}
+                \end{column}
+              \end{columns}
+            \end{block}
+            \vfill
+            \begin{block}{Results 3}
+              \begin{itemize}
+              \item Another block with more info
+              \item One of this blocks should produce the ``Oh!'' effect
+              \item Graphs, charts, plots will improve the quality
+              \end{itemize}
+            \end{block}
+            \vfill
+            \begin{block}{Conclusions}
+              \begin{itemize}
+              \item Point out what are the most important conclusions of your work
+              \item What is new in your work
+              \item What is better than older methods
+              \item And maybe what could still be improved
+              \item As you see, the poster main parts are:
+                \begin{itemize}
+                \item Abstract
+                \item Introduction presenting context and problem
+                \item Solution proposed
+                \item Results
+                \item Conclusions
+                \end{itemize}
+              \item Remember: a good poster prefers visual information over text
+              \end{itemize}
+            \end{block}
+          }
+          % ---------------------------------------------------------%
+          % end the column
+        \end{minipage}
+      \end{beamercolorbox}
+    \end{column}
+    % ---------------------------------------------------------%
+    % end the column
+  \end{columns}
+  \vskip1ex
+  %\tiny\hfill\textcolor{ta2gray}{Created with \LaTeX \texttt{beamerposter}  \url{http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php}}
+  \tiny\hfill{Created with \LaTeX~\texttt{beamerposter}  \url{http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php} \hskip1em}
+\end{frame}
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% End:
