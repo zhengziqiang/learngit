@@ -11,7 +11,13 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
     then compile the protobuf-2.6.1 from src and install
     Please config the gcc when you compile protobuf
     ./configure --prefix=/usr/local/ CC=/usr/bin/gcc
+    ./configure --prefix=/usr/local/ CC=/usr/bin/g++
 
+make
+
+make check
+
+make install
 
 import caffe 
 import sys
